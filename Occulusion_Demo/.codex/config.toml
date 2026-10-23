@@ -1,0 +1,39 @@
+default_permissions = "unity-code-only"
+approval_policy = "never"
+web_search = "live"
+
+[features]
+prefer_mxc = true
+
+[permissions.unity-code-only]
+extends = ":workspace"
+
+[permissions.unity-code-only.filesystem]
+":root" = "deny"
+":minimal" = "read"
+":tmpdir" = "deny"
+":slash_tmp" = "deny"
+
+[permissions.unity-code-only.filesystem.":workspace_roots"]
+"." = "read"
+"Assets/Scripts" = "write"
+"Assets/Shaders" = "write"
+
+[permissions.unity-code-only.network]
+enabled = false
+
+# 仅在当前项目关闭这些额外操作工具
+[plugins."codex-app-tools@openai-bundled"]
+enabled = false
+
+[plugins."browser@openai-bundled"]
+enabled = false
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = false
+
+[plugins."computer-use@openai-bundled"]
+enabled = false
+
+[mcp_servers.node_repl]
+enabled = false
